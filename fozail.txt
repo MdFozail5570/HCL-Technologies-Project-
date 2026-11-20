@@ -1,0 +1,122 @@
+--- 1. DATASET OVERVIEW ---
+Shape (Rows, Columns): (500, 11)
+
+Column Data Types & Non-Null Counts:
+<class 'pandas.DataFrame'>
+RangeIndex: 500 entries, 0 to 499
+Data columns (total 11 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   Student_ID             500 non-null    str    
+ 1   Department             500 non-null    str    
+ 2   Attendance_Percent     490 non-null    float64
+ 3   Study_Hours_Per_Day    500 non-null    float64
+ 4   Python_Marks           500 non-null    int64  
+ 5   Maths_Marks            500 non-null    int64  
+ 6   Physics_Marks          500 non-null    int64  
+ 7   Assignments_Submitted  500 non-null    int64  
+ 8   Internet_Access        500 non-null    str    
+ 9   Total_Marks            500 non-null    int64  
+ 10  Result                 500 non-null    str    
+dtypes: float64(2), int64(5), str(4)
+memory usage: 43.1 KB
+None
+
+First 5 Records:
+  Student_ID  Department  Attendance_Percent  ... Internet_Access  Total_Marks Result
+0    STU0001         ECE                93.5  ...             Yes          226   Pass
+1    STU0002  Mechanical                99.3  ...             Yes          195   Pass
+2    STU0003         CSE                67.6  ...             Yes          209   Pass
+3    STU0004         ECE                78.2  ...             Yes          224   Pass
+4    STU0005  Mechanical                78.1  ...              No          222   Pass
+
+[5 rows x 11 columns]
+
+--- 2. DATA QUALITY CHECKS ---
+Missing Values per Column:
+ Student_ID                0
+Department                0
+Attendance_Percent       10
+Study_Hours_Per_Day       0
+Python_Marks              0
+Maths_Marks               0
+Physics_Marks             0
+Assignments_Submitted     0
+Internet_Access           0
+Total_Marks               0
+Result                    0
+dtype: int64
+
+Duplicate Student_ID Count: 0
+Missing Attendance_Percent after department-median imputation: 0
+
+--- 3. SCORE VALIDATION (0 TO 100) ---
+Python_Marks values outside: 0
+Maths_Marks values outside: 0
+Physics_Marks values outside: 0
+
+--- 4. TOTAL, AVERAGE MARKS & GRADE DISTRIBUTION ---
+Total_Marks verification mismatches: 0
+
+Grade Distribution:
+Grade
+F      0
+D     27
+C    223
+B    235
+A     15
+Name: count, dtype: int64
+
+--- 5. DEPARTMENT-WISE ACADEMIC SUMMARY ---
+            Student_Count  Avg_Attendance  Avg_Study_Hours  Avg_Python  Avg_Maths  Avg_Physics  Overall_Avg_Marks
+Department                                                                                                       
+Mechanical            104           78.91             3.23       72.54      68.13        70.17              70.28
+CSE                    98           78.85             3.39       72.26      67.62        69.68              69.85
+ECE                   121           80.19             3.12       72.85      66.93        69.14              69.64
+Civil                  86           75.51             3.17       71.47      66.87        70.07              69.47
+Electrical             91           76.30             3.45       71.65      66.42        70.29              69.45
+
+--- 6. TOP 10 STUDENTS BY AVERAGE MARKS ---
+    Student_ID  Department  Attendance_Percent  Study_Hours_Per_Day  Average_Marks Grade
+6      STU0007  Mechanical                70.2                  4.4          90.33     A
+395    STU0396       Civil                75.6                  3.4          90.00     A
+391    STU0392  Mechanical                80.5                  4.5          89.33     A
+320    STU0321         ECE                80.9                  1.7          88.00     A
+369    STU0370         CSE                77.8                  1.9          88.00     A
+68     STU0069         CSE                92.8                  5.0          87.00     A
+289    STU0290         ECE                81.0                  4.0          86.33     A
+445    STU0446  Electrical                66.6                  2.9          86.33     A
+342    STU0343  Electrical                82.7                  2.7          86.33     A
+261    STU0262         CSE                85.0                  2.5          86.00     A
+
+--- AT-RISK STUDENTS (< 40% AVERAGE MARKS) ---
+Students below 40% overall average: 0
+Students marked 'Fail' in Result column (subject-level fail <35): 18
+
+--- 7. PERFORMANCE BY ATTENDANCE BANDS ---
+                   Student_Count  Mean_Average_Marks  Median_Average_Marks
+Attendance_Band                                                           
+Low (<=60%)                   43               67.81                 69.33
+Moderate (60-75%)            143               69.54                 70.33
+Good (75-85%)                167               70.60                 70.00
+High (>85%)                  147               69.56                 69.33
+
+--- STUDY HOURS VS. AVERAGE MARKS ---
+Pearson Correlation (Study Hours vs. Average Marks): 0.0350
+                          count   mean  median
+Study_Habit                                   
+High Study (>=3.5 hrs)      213  69.97   70.33
+Regular Study (<3.5 hrs)    287  69.59   69.67
+
+--- 8. PERFORMANCE BY INTERNET ACCESS ---
+                 Student_Count  Avg_Python_Marks  Avg_Overall_Marks  Avg_Assignments
+Internet_Access                                                                     
+No                          58             71.31              69.63             4.31
+Yes                        442             72.33              69.77             5.04
+
+--- 9. NUMPY STATISTICS & OUTLIERS (PYTHON_MARKS) ---
+Median Python Marks: 73.00
+Standard Deviation:  13.52
+Q1 (25th Percentile): 63.00 | Q3 (75th Percentile): 82.00 | IQR: 19.00
+IQR Bounds: [34.50, 110.50]
+Potential Python_Marks Outliers Detected: 2
